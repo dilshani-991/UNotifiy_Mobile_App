@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F9F9F9"
+    android:gravity="center_horizontal">
+
+    <!-- User Info Display -->
+    <TextView
+        android:id="@+id/userInfoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER INFO."
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/usernameDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username  : user name here"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/emailDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email      : user@email.com"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Edit Info Button -->
+    <Button
+        android:id="@+id/editInfoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Edit Info ."
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#888888"
+        android:textColor="#FFFFFF" />
+
+
+
+</LinearLayout>

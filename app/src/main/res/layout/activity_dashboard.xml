@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDF0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical"
+            android:paddingBottom="24dp">
+
+
+
+            <ImageView
+                android:id="@+id/profileIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_profile"
+                android:background="@drawable/avatar_bg"
+                android:scaleType="centerCrop"/>
+
+
+
+        </LinearLayout>
+
+        <!-- Welcome Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To UNotify"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="32dp"
+            android:textColor="#111111"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stay updated with the latest news"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="32dp"
+            android:textColor="#111111"/>
+
+
+        <!-- News Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/newsBtn1"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="Sport News"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:backgroundTint="#A6A6FA"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/newsBtn2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="Acedemic News"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:backgroundTint="#A6A6FA"
+                android:layout_marginStart="8dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/newsBtn3"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:text="Faculty Event News"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:backgroundTint="#A6A6FA"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
