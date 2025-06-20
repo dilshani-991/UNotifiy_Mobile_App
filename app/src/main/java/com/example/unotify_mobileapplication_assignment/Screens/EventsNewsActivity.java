@@ -1,25 +1,21 @@
 package com.example.unotify_mobileapplication_assignment.Screens;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.unotify_mobileapplication_assignment.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +26,8 @@ public class EventsNewsActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView newsRecyclerView;
     NewsAdapter adapter;
-    List<NewsItem> newsList;  // make this a member to modify
+    List<NewsItem> newsList;
+    private static final int REQUEST_CODE_ADD_NEWS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,28 +35,25 @@ public class EventsNewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sport_news);
 
 
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Event News");
+            getSupportActionBar().setTitle("Sport News");
         }
 
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         newsList = new ArrayList<>(getSampleNews());
         adapter = new NewsAdapter(newsList);
         newsRecyclerView.setAdapter(adapter);
 
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
-        nav.setSelectedItemId(R.id.nav_events);  // Correct to events here
+        nav.setSelectedItemId(R.id.nav_sports);
         nav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_sports) {
-                startActivity(new Intent(this, SportNewsActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else if (id == R.id.nav_academic) {
                 startActivity(new Intent(this, AcademicNewsActivity.class));
@@ -67,7 +61,9 @@ public class EventsNewsActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.nav_events) {
-                // Already here
+                startActivity(new Intent(this, EventsNewsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             }
             return false;
@@ -82,15 +78,27 @@ public class EventsNewsActivity extends AppCompatActivity {
     }
 
     static class NewsItem {
+        Uri imageUri;
         int imageRes;
         String title;
+        String content;
+
+        NewsItem(Uri imageUri, String title, String content) {
+            this.imageUri = imageUri;
+            this.imageRes = -1;
+            this.title = title;
+            this.content = content;
+        }
+
         NewsItem(int imageRes, String title) {
+            this.imageUri = null;
             this.imageRes = imageRes;
             this.title = title;
+            this.content = "";
         }
     }
 
-    class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Holder> {
+    static class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Holder> {
 
         List<NewsItem> newsList;
 
@@ -110,22 +118,6 @@ public class EventsNewsActivity extends AppCompatActivity {
             NewsItem item = newsList.get(position);
             holder.title.setText(item.title);
             holder.image.setImageResource(item.imageRes);
-
-            holder.readMoreButton.setOnClickListener(v ->
-                    Toast.makeText(v.getContext(), "Read more: " + item.title, Toast.LENGTH_SHORT).show()
-            );
-
-            holder.editButton.setOnClickListener(v -> {
-                Toast.makeText(v.getContext(), "Edit: " + item.title, Toast.LENGTH_SHORT).show();
-                // TODO: Add actual edit action here
-            });
-
-            holder.deleteButton.setOnClickListener(v -> {
-                newsList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, newsList.size());
-                Toast.makeText(v.getContext(), "Deleted: " + item.title, Toast.LENGTH_SHORT).show();
-            });
         }
 
         @Override
@@ -133,17 +125,14 @@ public class EventsNewsActivity extends AppCompatActivity {
             return newsList.size();
         }
 
-        class Holder extends RecyclerView.ViewHolder {
+        static class Holder extends RecyclerView.ViewHolder {
             ImageView image;
             TextView title;
-            Button readMoreButton, editButton, deleteButton;
 
             Holder(@NonNull View itemView) {
                 super(itemView);
                 image = itemView.findViewById(R.id.newsImage);
                 title = itemView.findViewById(R.id.newsTitle);
-                readMoreButton = itemView.findViewById(R.id.readMoreButton);
-
             }
         }
     }
