@@ -19,7 +19,6 @@ public class DashboardActivity extends AppCompatActivity {
     Button newsBtn1, newsBtn2, newsBtn3;
     ImageView profileIcon;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +27,9 @@ public class DashboardActivity extends AppCompatActivity {
         newsBtn1 = findViewById(R.id.newsBtn1);
         newsBtn2 = findViewById(R.id.newsBtn2);
         newsBtn3 = findViewById(R.id.newsBtn3);
-        profileIcon = findViewById(R.id.profileIcon); // Corrected reference
+        profileIcon = findViewById(R.id.profileIcon);
 
-        // Navigate to SportNewsActivity when newsBtn1 is clicked
+        // Navigate to each news page
         newsBtn1.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, SportNewsActivity.class);
             startActivity(intent);
@@ -41,16 +40,13 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
         newsBtn3.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, EventsNewsActivity.class);
             startActivity(intent);
         });
 
-
-        profileIcon.setOnClickListener(this::showUserProfileMenu); // Attach dropdown to avatar
+        profileIcon.setOnClickListener(this::showUserProfileMenu);
     }
-
 
     private void showUserProfileMenu(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);
@@ -65,17 +61,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         if (id == R.id.menu_user_info) {
             Toast.makeText(this, "User Info Clicked", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(this, UserInfoActivity.class);
             startActivity(intent);
-            return true;
-
-        } else if (id == R.id.menu_edit_user) {
-            Toast.makeText(this, "Edit User Info Clicked", Toast.LENGTH_SHORT).show();
-
-            // Call the dialog here instead of starting a new activity
-            showEditUserDialog();
-
             return true;
 
         } else if (id == R.id.menu_sign_out) {
@@ -88,12 +75,10 @@ public class DashboardActivity extends AppCompatActivity {
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                     .show();
-
             return true;
-
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     private void showEditUserDialog() {
@@ -108,8 +93,8 @@ public class DashboardActivity extends AppCompatActivity {
         android.widget.Button btnCancel = dialog.findViewById(R.id.btnCancel);
 
         // Pre-fill with existing data if available
-        etUsername.setText("John Doe"); // Replace with actual user data if available
-        etEmail.setText("john.doe@example.com"); // Replace with actual user data if available
+        etUsername.setText("John Doe");
+        etEmail.setText("john.doe@example.com");
 
         btnOk.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();

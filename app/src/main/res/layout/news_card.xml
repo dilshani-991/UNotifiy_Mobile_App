@@ -40,18 +40,7 @@
             android:gravity="end"
             android:layout_marginTop="8dp">
 
-            <Button
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EDIT" />
 
-            <Button
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DELETE"
-                android:layout_marginStart="16dp" />
             <Button
                 android:id="@+id/readMoreButton"
                 android:layout_width="wrap_content"

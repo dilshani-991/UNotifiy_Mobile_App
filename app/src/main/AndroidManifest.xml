@@ -83,7 +83,11 @@
             android:exported="true"
             android:label=""/>
 
-
+        <!-- edit user Activity -->
+        <activity
+            android:name="com.example.unotify_mobileapplication_assignment.Screens.EditUserInfoActivity"
+            android:exported="true"
+            android:label=""/>
 
 
     </application>

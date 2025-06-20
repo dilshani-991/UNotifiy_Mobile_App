@@ -1,29 +1,21 @@
 package com.example.unotify_mobileapplication_assignment.Screens;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.unotify_mobileapplication_assignment.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,11 +34,7 @@ public class SportNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport_news);
 
-        FloatingActionButton fab = findViewById(R.id.fabAddNews);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(SportNewsActivity.this, AddNewsActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_ADD_NEWS);
-        });
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,26 +78,6 @@ public class SportNewsActivity extends AppCompatActivity {
         );
     }
 
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            String newTitle = data.getStringExtra("newTitle");
-            int pos = data.getIntExtra("position", -1);
-            int imageRes = data.getIntExtra("imageRes", 0);
-
-            if (pos != -1) {
-                adapter.newsList.set(pos, new NewsItem(imageRes, newTitle));
-                adapter.notifyItemChanged(pos);
-            }
-        }
-    }
-
-
-
     static class NewsItem {
         Uri imageUri;
         int imageRes;
@@ -146,33 +114,12 @@ public class SportNewsActivity extends AppCompatActivity {
             return new Holder(v);
         }
 
-
         @Override
         public void onBindViewHolder(@NonNull Holder holder, int position) {
             NewsItem item = newsList.get(position);
             holder.title.setText(item.title);
             holder.image.setImageResource(item.imageRes);
-
-            // Edit
-            holder.editButton.setOnClickListener(v -> {
-                Toast.makeText(v.getContext(), "Edit: " + item.title, Toast.LENGTH_SHORT).show();
-
-                // Pass data to Edit screen
-                Intent intent = new Intent(v.getContext(), EditNewsActivity.class);
-                intent.putExtra("title", item.title);
-                intent.putExtra("imageRes", item.imageRes);
-                intent.putExtra("position", holder.getAdapterPosition());
-                ((SportNewsActivity)v.getContext()).startActivityForResult(intent, 100);
-            });
-
-            // Delete
-            holder.deleteButton.setOnClickListener(v -> {
-                newsList.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-                Toast.makeText(v.getContext(), "Deleted: " + item.title, Toast.LENGTH_SHORT).show();
-            });
         }
-
 
         @Override
         public int getItemCount() {
@@ -182,16 +129,12 @@ public class SportNewsActivity extends AppCompatActivity {
         static class Holder extends RecyclerView.ViewHolder {
             ImageView image;
             TextView title;
-            Button editButton, deleteButton;
 
             Holder(@NonNull View itemView) {
                 super(itemView);
                 image = itemView.findViewById(R.id.newsImage);
                 title = itemView.findViewById(R.id.newsTitle);
-                editButton = itemView.findViewById(R.id.editButton);
-                deleteButton = itemView.findViewById(R.id.deleteButton);
             }
         }
-
     }
 }

@@ -1,44 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E0E0E0"
+    android:gravity="center"
+    android:padding="24dp">
 
+    <!-- Profile Image -->
     <ImageView
-        android:id="@+id/userAvatar"
+        android:id="@+id/imgProfile"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/ic_profile"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop" />
+
+    <!-- User Info -->
+    <TextView
+        android:id="@+id/txtUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username: "
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
-        android:id="@+id/usernameText"
+        android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username  : user name here"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp" />
+        android:text="Email: "
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
 
     <TextView
-        android:id="@+id/emailText"
+        android:id="@+id/txtAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email  : email@example.com"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp" />
+        android:text="Address: "
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
 
-    <Button
-        android:id="@+id/exitButton"
+    <TextView
+        android:id="@+id/txtContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit" />
+        android:text="Contact: "
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
 
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Delete" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Exit" />
+    </LinearLayout>
 </LinearLayout>
-
-
-
-
-

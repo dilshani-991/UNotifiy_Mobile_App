@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "600286697579",
-    "project_id": "unotify--mobile-application",
-    "storage_bucket": "unotify--mobile-application.firebasestorage.app"
+    "project_number": "773061761032",
+    "project_id": "assignment-unofiy-mobile-app",
+    "storage_bucket": "assignment-unofiy-mobile-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:600286697579:android:f1504bf5af2cb4fc27b92e",
+        "mobilesdk_app_id": "1:773061761032:android:9155c4e4e56ebb14dfd9bd",
         "android_client_info": {
           "package_name": "com.example.unotify_mobileapplication_assignment"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCLiYvsOXzmSLkTcz4w1jaYrGSlcHBfvJU"
+          "current_key": "AIzaSyBkPhlJzuEt1XmWrQolT4Nw1JbK2nj2Uxc"
         }
       ],
       "services": {

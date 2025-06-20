@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unotify_mobileapplication_assignment.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,18 +29,12 @@ public class AcademicNewsActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView newsRecyclerView;
     NewsAdapter adapter;
-    List<NewsItem> newsList; // make it a member variable so we can update
+    List<NewsItem> newsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sport_news);
-
-        FloatingActionButton fab = findViewById(R.id.fabAddNews);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(AcademicNewsActivity.this, AddNewsActivity.class);
-            startActivity(intent);
-        });
+        setContentView(R.layout.activity_sport_news); // ✅ Ensure layout exists and is correct
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,13 +45,12 @@ public class AcademicNewsActivity extends AppCompatActivity {
         newsRecyclerView = findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Initialize the list
         newsList = new ArrayList<>(getSampleNews());
         adapter = new NewsAdapter(newsList);
         newsRecyclerView.setAdapter(adapter);
 
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
-        nav.setSelectedItemId(R.id.nav_academic); // Correct to academic here
+        nav.setSelectedItemId(R.id.nav_academic);
         nav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -68,7 +60,6 @@ public class AcademicNewsActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.nav_academic) {
-                // Already here
                 return true;
             } else if (id == R.id.nav_events) {
                 startActivity(new Intent(this, EventsNewsActivity.class));
@@ -121,21 +112,7 @@ public class AcademicNewsActivity extends AppCompatActivity {
                     Toast.makeText(v.getContext(), "Read more: " + item.title, Toast.LENGTH_SHORT).show()
             );
 
-            holder.editButton.setOnClickListener(v -> {
-                // Open Edit Activity or show edit dialog here
-                Toast.makeText(v.getContext(), "Edit: " + item.title, Toast.LENGTH_SHORT).show();
-                // Example: Intent intent = new Intent(v.getContext(), EditNewsActivity.class);
-                // intent.putExtra("newsTitle", item.title);
-                // v.getContext().startActivity(intent);
-            });
-
-            holder.deleteButton.setOnClickListener(v -> {
-                // Remove item from list and notify adapter
-                newsList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, newsList.size());
-                Toast.makeText(v.getContext(), "Deleted: " + item.title, Toast.LENGTH_SHORT).show();
-            });
+            // ❌ Removed editButton and deleteButton logic to prevent crashes
         }
 
         @Override
@@ -146,15 +123,13 @@ public class AcademicNewsActivity extends AppCompatActivity {
         class Holder extends RecyclerView.ViewHolder {
             ImageView image;
             TextView title;
-            Button readMoreButton, editButton, deleteButton;
+            Button readMoreButton;
 
             Holder(@NonNull View itemView) {
                 super(itemView);
                 image = itemView.findViewById(R.id.newsImage);
                 title = itemView.findViewById(R.id.newsTitle);
                 readMoreButton = itemView.findViewById(R.id.readMoreButton);
-                editButton = itemView.findViewById(R.id.editButton);
-                deleteButton = itemView.findViewById(R.id.deleteButton);
             }
         }
     }

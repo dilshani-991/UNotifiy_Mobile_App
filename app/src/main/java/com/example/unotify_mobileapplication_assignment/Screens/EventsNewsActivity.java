@@ -37,11 +37,6 @@ public class EventsNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport_news);
 
-        FloatingActionButton fab = findViewById(R.id.fabAddNews);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(EventsNewsActivity.this, AddNewsActivity.class);
-            startActivity(intent);
-        });
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -148,8 +143,7 @@ public class EventsNewsActivity extends AppCompatActivity {
                 image = itemView.findViewById(R.id.newsImage);
                 title = itemView.findViewById(R.id.newsTitle);
                 readMoreButton = itemView.findViewById(R.id.readMoreButton);
-                editButton = itemView.findViewById(R.id.editButton);
-                deleteButton = itemView.findViewById(R.id.deleteButton);
+
             }
         }
     }
